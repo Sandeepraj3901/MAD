@@ -6,6 +6,7 @@
     </entity>
     <entity name="Todo" representedClassName="Todo" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Wallet" representedClassName="Wallet" syncable="YES" codeGenerationType="class">
@@ -16,7 +17,7 @@
     </entity>
     <elements>
         <element name="Financial" positionX="-36" positionY="45" width="128" height="75"/>
-        <element name="Todo" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Todo" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="Wallet" positionX="-54" positionY="9" width="128" height="105"/>
     </elements>
 </model>

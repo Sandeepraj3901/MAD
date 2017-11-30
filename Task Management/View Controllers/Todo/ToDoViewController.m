@@ -123,4 +123,7 @@
     NSString *getDate = [dateFormat stringFromDate:myDate];
     [lblSelectedDate setText:[NSString stringWithFormat:@"%@", getDate]];
 }
+
+- (IBAction)segmentChanged:(id)sender {
+}
 @end

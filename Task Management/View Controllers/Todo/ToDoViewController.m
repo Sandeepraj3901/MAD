@@ -17,7 +17,7 @@
 @end
 
 @implementation ToDoViewController
-@synthesize titleTextField, datePickerControl, lblSelectedDate, todo;
+@synthesize titleTextField, datePickerControl, lblSelectedDate, todo, segment, priorityLabel;
 
 -(NSManagedObjectContext *) managedObjectContext{
     NSManagedObjectContext *context = nil;
@@ -39,14 +39,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     categories = @[@"Gas", @"Groceries", @"Clothing", @"Food", @"Home", @"Fun", @"Transport", @"Utilities", @"General"];
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
     
     if(self.todo){
+        //Title
         [titleTextField setText:[self.todo valueForKey:@"title"]];
+
+        //Priority
+        NSString *take = [segment titleForSegmentAtIndex:[segment selectedSegmentIndex]];
+        priorityLabel.text = [NSString stringWithFormat:@"%@", take ];
+        [priorityLabel setText:[self.todo valueForKey:@"priority"]];
         
+        //Date
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd MMMM yyyy HH:mm:ss"];
         NSDate *dater;
@@ -96,12 +102,14 @@
         //Update Existing Todo
         [self.todo setValue:self.titleTextField.text forKey:@"title"];
         [self.todo setValue:fixDate forKey:@"date"];
+        [self.todo setValue:self.priorityLabel.text forKey:@"priority"];
     }
     else{
         //Create a new Todo
         NSManagedObject *newTodo = [NSEntityDescription insertNewObjectForEntityForName:@"Todo" inManagedObjectContext:context];
         [newTodo setValue:self.titleTextField.text forKey:@"title"];
         [newTodo setValue:fixDate forKey:@"date"];
+        [newTodo setValue:self.priorityLabel.text forKey:@"priority"];
     }
     NSError *error = nil;
     //Save the object to persistent store
@@ -125,5 +133,15 @@
 }
 
 - (IBAction)segmentChanged:(id)sender {
+    if([segment selectedSegmentIndex] == 0){
+        [priorityLabel setText:@"First"];
+    }
+    else if([segment selectedSegmentIndex] == 1){
+        [priorityLabel setText:@"Second"];
+    }
+    else if([segment selectedSegmentIndex] == 2){
+        [priorityLabel setText:@"Third"];
+    }
+    //str = [segment titleForSegmentAtIndex:[segment selectedSegmentIndex]];
 }
 @end

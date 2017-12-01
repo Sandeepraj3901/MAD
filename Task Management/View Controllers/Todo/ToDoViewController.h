@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UILabel *lblCategory;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
+@property (weak, nonatomic) IBOutlet UILabel *priorityLabel;
 
 @property (strong) NSManagedObject *todo;
 - (IBAction)save:(id)sender;

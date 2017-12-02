@@ -17,7 +17,7 @@
 @end
 
 @implementation ToDoViewController
-@synthesize titleTextField, datePickerControl, lblSelectedDate, todo, segment, priorityLabel;
+@synthesize titleTextField, datePickerControl, lblSelectedDate, todo, segment, priorityLabel, lblCategory;
 
 -(NSManagedObjectContext *) managedObjectContext{
     NSManagedObjectContext *context = nil;
@@ -51,6 +51,8 @@
         NSString *take = [segment titleForSegmentAtIndex:[segment selectedSegmentIndex]];
         priorityLabel.text = [NSString stringWithFormat:@"%@", take ];
         [priorityLabel setText:[self.todo valueForKey:@"priority"]];
+        
+        [lblCategory setText:[self.todo valueForKey:@"category"]];
         
         //Date
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -103,6 +105,7 @@
         [self.todo setValue:self.titleTextField.text forKey:@"title"];
         [self.todo setValue:fixDate forKey:@"date"];
         [self.todo setValue:self.priorityLabel.text forKey:@"priority"];
+        [self.todo setValue:self.lblCategory.text forKey:@"category"];
     }
     else{
         //Create a new Todo
@@ -110,6 +113,7 @@
         [newTodo setValue:self.titleTextField.text forKey:@"title"];
         [newTodo setValue:fixDate forKey:@"date"];
         [newTodo setValue:self.priorityLabel.text forKey:@"priority"];
+        [newTodo setValue:self.lblCategory.text forKey:@"category"];
     }
     NSError *error = nil;
     //Save the object to persistent store

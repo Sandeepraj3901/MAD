@@ -37,7 +37,11 @@
 - (IBAction)registerBtn:(id)sender {
     if([_passwordField.text isEqualToString:@""] || [_reEnterPasswordField.text isEqualToString:@""]){
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Ooops!" message:@"You must complete all Fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        UIAlertController *error = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"You must complete all Fields" preferredStyle:UIAlertControllerStyleAlert];
         [error show];
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//        [error addAction:defaultAction];
+//        [self presentViewController:error animated:YES completion:nil];
     }
     else{
         [self checkPasswordsMatch];
